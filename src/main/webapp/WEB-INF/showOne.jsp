@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Burger Jaunt</title>
+<title>Showing Burger Jaunt</title>
 <!-- for Bootstrap CSS -->
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <!-- YOUR own local CSS -->
@@ -17,29 +17,17 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="my-5">Burger Tracker</h1>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Burger Name</th>
-					<th>Restaurant Name</th>
-					<th>Rating</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-			<c:forEach var="burger" items="${allBurgers}">
-				<tr>
-					<td><c:out value="${burger.burgerName}"/></td>
-					<td><c:out value="${burger.restaurantName}"/></td>
-					<td><c:out value="${burger.rating}"/></td>
-					<td><a href="/burgers/edit/${burger.id}">Edit</a></td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
+	<div class="row">
+	<div class="col-10">
+		<h1 class="my-5">Edit Burger</h1>
+	</div>
+	<div class="col-2">
+	<a href="/burgers">Go back!</a>
+	</div>
+	</div>
 		<div class="border mt-5 p-3">
-			<form:form action="/burgers/create" method="post" modelAttribute="burger">
+			<form:form action="/burgers/process/edit/${burger.id }" method="post" modelAttribute="burger">
+			<input type="hidden" name="_method" value="put"/>
 		<div class="form-group">
 			<label for="burgerName">Burger Name:</label>
 			<form:input type="text" path="burgerName" class="form-control"/>
@@ -60,7 +48,7 @@
 			<form:input type="number" path="rating" class="form-control"/>
 			<small class="form-text text-danger"><form:errors path="rating"/></small>
 		</div>
-		<input type="submit" value="Add Burger" class="mt-2 btn btn-success" />
+		<input type="submit" value="Edit Burger" class="mt-2 btn btn-success" />
 	</form:form>
 		</div>
 	</div>
